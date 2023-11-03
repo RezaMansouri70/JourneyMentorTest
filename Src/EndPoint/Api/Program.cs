@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Application.Services;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IFlightsService, FlightsService>();
 builder.Services.AddScoped<IAirportsService, AirportsService>();
-
+builder.Services.AddHttpClient("Aviationstack", client =>
+{
+    client.BaseAddress = new Uri("http://api.aviationstack.com/v1/");
+})
+.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[]
+{
+    TimeSpan.FromSeconds(1),
+    TimeSpan.FromSeconds(5),
+    TimeSpan.FromSeconds(10)
+}));
 
 var app = builder.Build();
 
