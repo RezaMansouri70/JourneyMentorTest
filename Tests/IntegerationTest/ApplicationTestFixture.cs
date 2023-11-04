@@ -27,6 +27,8 @@ namespace IntegerationTest
         private void FillMockData()
         {
             FillMockFlights();
+            FillMockAirports();
+
 
         }
 
@@ -39,7 +41,18 @@ namespace IntegerationTest
             ApplicationDbContext.SaveChangesAsync().GetAwaiter().GetResult();
         }
 
-       
+        private void FillMockAirports()
+        {
+
+
+            Airport airport = new Airport("Anaa", "AAA", "NTGA", "-17.05", "-145.41667", "6947726", "Pacific/Tahiti", "-10", "null", "French Polynesia", "PF", "AAA");
+
+            ApplicationDbContext.Airports.Add(airport);
+
+            ApplicationDbContext.SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+
 
     }
 }

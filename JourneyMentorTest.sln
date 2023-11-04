@@ -25,9 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Src\EndPoint\Api\Api
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Src\Persistence\Persistence\Persistence.csproj", "{B15049DD-4A8A-4B76-B73B-6DDBFDA581C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegerationTest", "Tests\IntegerationTest\IntegerationTest.csproj", "{03D68D8F-7FC8-4CFC-BA50-F387872E1EC1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsTest", "Tests\UnitsTest\UnitsTest.csproj", "{4D7C921A-669A-4883-8063-22D6F913643E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTest", "Tests\IntegerationTest\ServiceTest.csproj", "{03D68D8F-7FC8-4CFC-BA50-F387872E1EC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{03D68D8F-7FC8-4CFC-BA50-F387872E1EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03D68D8F-7FC8-4CFC-BA50-F387872E1EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03D68D8F-7FC8-4CFC-BA50-F387872E1EC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D7C921A-669A-4883-8063-22D6F913643E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D7C921A-669A-4883-8063-22D6F913643E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D7C921A-669A-4883-8063-22D6F913643E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D7C921A-669A-4883-8063-22D6F913643E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,7 +72,6 @@ Global
 		{42F24676-6C4F-4092-AE1A-16EEAA426F7A} = {111C07D3-DB77-41D4-A685-291DFEC2B242}
 		{B15049DD-4A8A-4B76-B73B-6DDBFDA581C2} = {A53F9A1F-1F6F-4782-A559-124DC41D4325}
 		{03D68D8F-7FC8-4CFC-BA50-F387872E1EC1} = {C3475400-D642-44AE-AAAB-6BA429CF7073}
-		{4D7C921A-669A-4883-8063-22D6F913643E} = {C3475400-D642-44AE-AAAB-6BA429CF7073}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A5E5481-F3FE-42B5-8593-2E187FF927E9}
