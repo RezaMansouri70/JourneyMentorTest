@@ -56,8 +56,8 @@ namespace Application.Services
                 // We Can Log Err Here
             }
 
-            // Save In DB
-            var dataMustSaveInDB = data.data.Select(a => new Domain.DomainClass.Flight(a.flight_date,a.flight_status,a.departure.airport)).ToList();
+            // Persist Data In Database
+             var dataMustSaveInDB = data.data.Select(a => new Domain.DomainClass.Flight(a.flight_date,a.flight_status,a.departure.airport)).ToList();
             await _unitOfWork.FlightRepository.AddRange(dataMustSaveInDB);
             await _unitOfWork.Save();
 

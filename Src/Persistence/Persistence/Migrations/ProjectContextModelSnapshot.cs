@@ -35,35 +35,21 @@ namespace Persistence.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("geoname_id")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("gmt")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("iata_code")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("icao_code")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("latitude")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("longitude")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("phone_number")
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("timezone")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -77,15 +63,10 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("airportname")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<DateOnly>("flight_date")
                         .HasColumnType("date");
 
                     b.Property<string>("flight_status")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -114,8 +95,71 @@ namespace Persistence.Migrations
                                 .HasForeignKey("AirportId");
                         });
 
-                    b.Navigation("airport_name")
-                        .IsRequired();
+                    b.OwnsOne("Domain.ValueObjects.Latitude", "latitude", b1 =>
+                        {
+                            b1.Property<int>("AirportId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("longtext")
+                                .HasColumnName("latitude");
+
+                            b1.HasKey("AirportId");
+
+                            b1.ToTable("Airports");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AirportId");
+                        });
+
+                    b.OwnsOne("Domain.ValueObjects.Longitude", "longitude", b1 =>
+                        {
+                            b1.Property<int>("AirportId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("longtext")
+                                .HasColumnName("longitude");
+
+                            b1.HasKey("AirportId");
+
+                            b1.ToTable("Airports");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AirportId");
+                        });
+
+                    b.Navigation("airport_name");
+
+                    b.Navigation("latitude");
+
+                    b.Navigation("longitude");
+                });
+
+            modelBuilder.Entity("Domain.DomainClass.Flight", b =>
+                {
+                    b.OwnsOne("Domain.ValueObjects.Name", "airportname", b1 =>
+                        {
+                            b1.Property<int>("FlightId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("varchar(200)")
+                                .HasColumnName("airportname");
+
+                            b1.HasKey("FlightId");
+
+                            b1.ToTable("Flights");
+
+                            b1.WithOwner()
+                                .HasForeignKey("FlightId");
+                        });
+
+                    b.Navigation("airportname");
                 });
 #pragma warning restore 612, 618
         }

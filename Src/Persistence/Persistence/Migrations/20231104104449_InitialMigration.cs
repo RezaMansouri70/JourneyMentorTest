@@ -21,15 +21,15 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    airportname = table.Column<string>(name: "airport_name", type: "varchar(200)", maxLength: 200, nullable: false),
-                    iatacode = table.Column<string>(name: "iata_code", type: "longtext", nullable: false),
-                    icaocode = table.Column<string>(name: "icao_code", type: "longtext", nullable: false),
-                    latitude = table.Column<string>(type: "longtext", nullable: false),
-                    longitude = table.Column<string>(type: "longtext", nullable: false),
-                    geonameid = table.Column<string>(name: "geoname_id", type: "longtext", nullable: false),
-                    timezone = table.Column<string>(type: "longtext", nullable: false),
-                    gmt = table.Column<string>(type: "longtext", nullable: false),
-                    phonenumber = table.Column<string>(name: "phone_number", type: "varchar(500)", maxLength: 500, nullable: true),
+                    airportname = table.Column<string>(name: "airport_name", type: "varchar(200)", maxLength: 200, nullable: true),
+                    iatacode = table.Column<string>(name: "iata_code", type: "longtext", nullable: true),
+                    icaocode = table.Column<string>(name: "icao_code", type: "longtext", nullable: true),
+                    latitude = table.Column<string>(type: "longtext", nullable: true),
+                    longitude = table.Column<string>(type: "longtext", nullable: true),
+                    geonameid = table.Column<string>(name: "geoname_id", type: "longtext", nullable: true),
+                    timezone = table.Column<string>(type: "longtext", nullable: true),
+                    gmt = table.Column<string>(type: "longtext", nullable: true),
+                    phonenumber = table.Column<string>(name: "phone_number", type: "longtext", nullable: true),
                     countryname = table.Column<string>(name: "country_name", type: "longtext", nullable: true),
                     countryiso2 = table.Column<string>(name: "country_iso2", type: "longtext", nullable: true),
                     cityiatacode = table.Column<string>(name: "city_iata_code", type: "longtext", nullable: true)
@@ -47,8 +47,8 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     flightdate = table.Column<DateOnly>(name: "flight_date", type: "date", nullable: false),
-                    flightstatus = table.Column<string>(name: "flight_status", type: "longtext", nullable: false),
-                    airportname = table.Column<string>(type: "longtext", nullable: false)
+                    flightstatus = table.Column<string>(name: "flight_status", type: "longtext", nullable: true),
+                    airportname = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {

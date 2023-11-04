@@ -1,4 +1,5 @@
-﻿using Domain.ValueObjects;
+﻿using Domain.Interfaces;
+using Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.DomainClass
 {
-    public class Flight
+    public class Flight : IAggregateRoot
     {
         public Flight()
         {
@@ -17,14 +18,14 @@ namespace Domain.DomainClass
         {
             this.flight_date = flight_date;
             this.flight_status = flight_status;
-            this.airportname = airportname;
+            this.airportname = new Name(airportname); 
 
         }
 
         public int Id { get; set; }
         public DateOnly flight_date { get; private set; }
         public string flight_status { get; private set; }
-        public string airportname { get; private set; }
+        public Name airportname { get; private set; }
        
     }
 }

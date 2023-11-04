@@ -1,4 +1,5 @@
-﻿using Domain.ValueObjects;
+﻿using Domain.Interfaces;
+using Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Domain.DomainClass
 {
-    public class Airport
+    public class Airport : IAggregateRoot
     {
         protected Airport()
         {
@@ -18,8 +19,8 @@ namespace Domain.DomainClass
             this.airport_name = new Name(airportname) ;
             this.iata_code = iata_code;
             this.icao_code = icao_code;
-            this.latitude = latitude;
-            this.longitude = longitude;
+            this.latitude = new Latitude(latitude);
+            this.longitude = new Longitude(longitude);
             this.geoname_id = geoname_id;
             this.timezone = timezone;
             this.gmt = gmt;
@@ -32,8 +33,8 @@ namespace Domain.DomainClass
         public Name airport_name { get; private set; }
         public string iata_code { get; private set; }
         public string icao_code { get; private set; }
-        public string latitude { get; private set; }
-        public string longitude { get; private set; }
+        public Latitude latitude { get; private set; }
+        public Longitude longitude { get; private set; }
         public string geoname_id { get; private set; }
         public string timezone { get; private set; }
         public string gmt { get; private set; }

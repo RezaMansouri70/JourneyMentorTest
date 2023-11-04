@@ -38,9 +38,32 @@ namespace Persistence
                 .IsRequired();
             });
 
+            modelBuilder.Entity<Airport>().OwnsOne(pi => pi.latitude, builder =>
+            {
+                builder.Property(p => p.Value)
+                .HasColumnName("latitude")
+                .IsRequired();
+            });
 
-            modelBuilder.Entity<Airport>().Property(c => c.phone_number)
-              .HasMaxLength(500);
+            modelBuilder.Entity<Airport>().OwnsOne(pi => pi.longitude, builder =>
+            {
+                builder.Property(p => p.Value)
+                .HasColumnName("longitude")
+                .IsRequired();
+            });
+
+
+
+
+            modelBuilder.Entity<Flight>().OwnsOne(pi => pi.airportname, builder =>
+            {
+                builder.Property(p => p.Value)
+                .HasColumnName("airportname")
+                .HasColumnType("varchar(200)")
+                .HasMaxLength(200)
+                .IsRequired();
+            });
+
         }
     }
 }
