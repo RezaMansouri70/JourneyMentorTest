@@ -1,13 +1,7 @@
-﻿using Application.Interfaces;
-using Application.Models.Flight;
+﻿using Application.Features.Airport.Command;
 using ClientSdk;
-using Microsoft.AspNetCore.Mvc;
-using Application.Models.General;
-using Application.Models.Airport;
 using MediatR;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using Application.Features.Airport.Command;
-using Domain.ValueObjects;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
@@ -30,7 +24,7 @@ namespace Api.Controllers
             {
                 return Empty;
             }
-           
+
 
         }
 

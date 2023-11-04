@@ -1,21 +1,13 @@
 ﻿using Application.Interfaces;
-using Application.Models.Airport;
 using Application.Models.Flight;
 using Application.Models.General;
 using ClientSdk;
 using MediatR;
-using Org.BouncyCastle.Crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Application.Features.Flight.Command
 {
 
-    public  class GetFlightsCommand : Filter, IRequest<Response<List<FlightModel>>>
+    public class GetFlightsCommand : Filter, IRequest<Response<List<FlightModel>>>
     {
 
     }
@@ -29,7 +21,7 @@ namespace Application.Features.Flight.Command
         }
 
         public async Task<Response<List<FlightModel>>> Handle(GetFlightsCommand request, CancellationToken cancellationToken)
-        {          
+        {
             return await flightsService.GetFlights(request);
         }
 

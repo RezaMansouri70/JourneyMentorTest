@@ -1,11 +1,5 @@
 ﻿using Domain.Interfaces;
 using Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Domain.DomainClass
 {
@@ -16,7 +10,7 @@ namespace Domain.DomainClass
         }
         public Airport(string airportname, string iata_code, string icao_code, string latitude, string longitude, string geoname_id, string timezone, string gmt, string phone_number, string country_name, string country_iso2, string city_iata_code)
         {
-            this.airport_name = new Name(airportname) ;
+            this.airport_name = new Name(airportname);
             this.iata_code = iata_code;
             this.icao_code = icao_code;
             this.latitude = new Latitude(latitude);

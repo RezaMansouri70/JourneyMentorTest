@@ -4,8 +4,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Polly;
-using System;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = builder.Configuration.GetSection("ConnectionString:MySqlConnectionString").Value; 
+var connectionString = builder.Configuration.GetSection("ConnectionString:MySqlConnectionString").Value;
 builder.Services.AddDbContext<ProjectContext>(options =>
 {
     options.UseMySQL(connectionString);

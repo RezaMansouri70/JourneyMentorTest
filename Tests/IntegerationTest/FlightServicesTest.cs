@@ -23,7 +23,7 @@ namespace IntegerationTest.BookServices
             _unitOfWork = new UnitOfWork(_dbContext);
 
             //Mock IConfiguration
-            var AccessKey = new Dictionary<string, string?> {{"AviationstackSetting:AccessKey", "cc87b1a25245d61a7db964fe5edf9f01" } };
+            var AccessKey = new Dictionary<string, string?> { { "AviationstackSetting:AccessKey", "cc87b1a25245d61a7db964fe5edf9f01" } };
             IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(AccessKey).Build();
 
             //Mock HttpClient
@@ -42,7 +42,7 @@ namespace IntegerationTest.BookServices
         public void should_get_flights_from_the_source()
         {
             // Act
-            var result = _manager.GetFlights(new Application.Models.General.Filter() { PageIndex=1 , PageSize=1 }).GetAwaiter().GetResult();
+            var result = _manager.GetFlights(new Application.Models.General.Filter() { PageIndex = 1, PageSize = 1 }).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(result.Success);

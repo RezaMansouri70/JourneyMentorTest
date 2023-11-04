@@ -4,7 +4,7 @@ using Persistence;
 
 namespace IntegerationTest
 {
-    public class ApplicationTestFixture 
+    public class ApplicationTestFixture
     {
         public ProjectContext ApplicationDbContext { get; private set; }
 
@@ -12,7 +12,7 @@ namespace IntegerationTest
         {
             SetServices();
             FillMockData();
-        
+
         }
         private void SetServices()
         {

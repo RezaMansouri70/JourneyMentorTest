@@ -1,11 +1,7 @@
-﻿using Application.Interfaces;
-using Application.Models.Flight;
+﻿using Application.Features.Flight.Command;
 using ClientSdk;
-using Microsoft.AspNetCore.Mvc;
-using Application.Models.General;
-using Application.Features.Airport.Command;
 using MediatR;
-using Application.Features.Flight.Command;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
@@ -13,7 +9,7 @@ namespace Api.Controllers
     [ApiController]
     public class FlightsController : Controller
     {
-      
+
         private readonly IMediator _mediator;
 
         public FlightsController(IMediator mediator) => _mediator = mediator;
@@ -34,5 +30,5 @@ namespace Api.Controllers
         }
     }
 
-  
+
 }

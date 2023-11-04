@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Domain.ValueObjects.Exceptions
+﻿namespace Domain.ValueObjects.Exceptions
 {
     [Serializable]
     internal class InvalidLatitudeException : Exception

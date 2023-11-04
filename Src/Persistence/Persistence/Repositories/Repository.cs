@@ -29,8 +29,8 @@ namespace Persistence.Repositories
         {
             var result = await _context.Set<TEntity>().FindAsync(id);
 
-           
-           
+
+
             return result;
         }
 
@@ -48,8 +48,8 @@ namespace Persistence.Repositories
         {
             var result = _context.Set<TEntity>().SingleOrDefault(predicate);
 
-            
-                return result;
+
+            return result;
 
         }
 
@@ -60,7 +60,7 @@ namespace Persistence.Repositories
 
         public async Task AddRange(IEnumerable<TEntity> entities)
         {
-           await _context.Set<TEntity>().AddRangeAsync(entities);
+            await _context.Set<TEntity>().AddRangeAsync(entities);
         }
 
         public void Remove(TEntity entity)

@@ -1,19 +1,10 @@
 ﻿using Application.Interfaces;
-using Application.Models.Airport;
 using Application.Models.Flight;
 using Application.Models.General;
 using ClientSdk;
-using Domain.DomainClass;
 using Microsoft.Extensions.Configuration;
-using Org.BouncyCastle.Asn1.Ocsp;
 using Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -57,7 +48,7 @@ namespace Application.Services
             }
 
             // Persist Data In Database
-             var dataMustSaveInDB = data.data.Select(a => new Domain.DomainClass.Flight(a.flight_date,a.flight_status,a.departure.airport)).ToList();
+            var dataMustSaveInDB = data.data.Select(a => new Domain.DomainClass.Flight(a.flight_date, a.flight_status, a.departure.airport)).ToList();
             await _unitOfWork.FlightRepository.AddRange(dataMustSaveInDB);
             await _unitOfWork.Save();
 
@@ -69,7 +60,7 @@ namespace Application.Services
                 Success = true,
                 PageIndex = filter.PageIndex,
                 PageSize = filter.PageSize,
-                TotalRecords = data != null && data.pagination!= null ? data.pagination.total : 0
+                TotalRecords = data != null && data.pagination != null ? data.pagination.total : 0
             };
 
 

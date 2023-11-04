@@ -1,4 +1,5 @@
-﻿namespace Application.Models.Flight { 
+﻿namespace Application.Models.Flight
+{
     public class Arrival
     {
         public string airport { get; set; }

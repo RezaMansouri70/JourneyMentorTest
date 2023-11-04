@@ -20,7 +20,7 @@ namespace Domain.ValueObjects
         {
             value = value.Trim() ?? string.Empty;
 
-            if (string.IsNullOrEmpty(value) )
+            if (string.IsNullOrEmpty(value))
             {
                 throw new InvalidLatitudeException("Invalid Latitude");
             }

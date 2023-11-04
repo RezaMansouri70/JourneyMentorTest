@@ -1,11 +1,5 @@
 ﻿using Domain.Interfaces;
 using Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.DomainClass
 {
@@ -18,7 +12,7 @@ namespace Domain.DomainClass
         {
             this.flight_date = flight_date;
             this.flight_status = flight_status;
-            this.airportname = new Name(airportname); 
+            this.airportname = new Name(airportname);
 
         }
 
@@ -26,6 +20,6 @@ namespace Domain.DomainClass
         public DateOnly flight_date { get; private set; }
         public string flight_status { get; private set; }
         public Name airportname { get; private set; }
-       
+
     }
 }
