@@ -1,9 +1,11 @@
 using Application.Interfaces;
 using Application.Services;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Polly;
 using System;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,10 @@ builder.Services.AddHttpClient("Aviationstack", client =>
     TimeSpan.FromSeconds(5),
     TimeSpan.FromSeconds(10)
 }));
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Application.Features.Airport.Command.GetAirportsCommand).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Application.Features.Flight.Command.GetFlightsCommand).Assembly));
+
 
 var app = builder.Build();
 

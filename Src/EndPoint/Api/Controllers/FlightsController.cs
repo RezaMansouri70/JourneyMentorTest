@@ -3,23 +3,34 @@ using Application.Models.Flight;
 using ClientSdk;
 using Microsoft.AspNetCore.Mvc;
 using Application.Models.General;
+using Application.Features.Airport.Command;
+using MediatR;
+using Application.Features.Flight.Command;
+
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class FlightsController : Controller
     {
-        private readonly IFlightsService flightsService;
+      
+        private readonly IMediator _mediator;
 
-        public FlightsController(IFlightsService flightsService)
-        {
-            this.flightsService = flightsService;
-        }
+        public FlightsController(IMediator mediator) => _mediator = mediator;
 
         [HttpGet(Routes.GetFlights)]
-        public async Task<Response<List<FlightModel>>> GetFlights([FromQuery]Filter filter)
+        public async Task<IActionResult> GetFlights([FromQuery] GetFlightsCommand command, CancellationToken token)
         {
-            return await flightsService.GetFlights(filter);
+            try
+            {
+                return Ok(await _mediator.Send(command, token));
+            }
+            catch (TaskCanceledException)
+            {
+                return Empty;
+            }
+
+
         }
     }
 

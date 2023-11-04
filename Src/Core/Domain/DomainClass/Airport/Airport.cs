@@ -13,8 +13,7 @@ namespace Domain.DomainClass
         protected Airport()
         {
         }
-        public Airport(string airportname, string iata_code, string icao_code, string latitude, string longitude, string geoname_id, string timezone, string gmt, string phone_number, string country_name, string country_iso2, string city_iata_code
-            )
+        public Airport(string airportname, string iata_code, string icao_code, string latitude, string longitude, string geoname_id, string timezone, string gmt, string phone_number, string country_name, string country_iso2, string city_iata_code)
         {
             Name validateairportname = new Name(airportname);
             this.airport_name = validateairportname;
