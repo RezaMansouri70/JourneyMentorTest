@@ -10,26 +10,21 @@ namespace Domain.DomainClass
 {
     public class Flight
     {
-        protected Flight()
+        public Flight()
         {
         }
-        public Flight(string title, int airportId , string flight_date ,string flight_status)
+        public Flight(DateOnly flight_date, string flight_status, string airportname)
         {
-            Name validateName = new Name(title);
-            AirportId = airportId;
+            this.flight_date = flight_date;
+            this.flight_status = flight_status;
+            this.airportname = airportname;
+
         }
 
         public int Id { get; set; }
-        public string flight_date { get; set; }
-        public string flight_status { get; set; }
-        public Departure departure { get; set; }
-        public Arrival arrival { get; set; }
-        public Airline airline { get; set; }
-        public FlightInfo flight { get; set; }
-        public Aircraft aircraft { get; set; }
-        public Live live { get; set; }
-        public int AirportId { get; }
-        [ForeignKey("AirportId")]
-        public virtual Airport FlightAirport { get; init; } = null!;
+        public DateOnly flight_date { get; private set; }
+        public string flight_status { get; private set; }
+        public string airportname { get; private set; }
+       
     }
 }

@@ -10,7 +10,7 @@ namespace Application.Models.Flight
     public class FlightModel
     {
 
-        public string flight_date { get; set; }
+        public DateOnly flight_date { get; set; }
         public string flight_status { get; set; }
         public Departure departure { get; set; }
         public Arrival arrival { get; set; }

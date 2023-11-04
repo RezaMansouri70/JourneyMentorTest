@@ -16,7 +16,7 @@ namespace Application.Models.Airport
         public string geoname_id { get; set; }
         public string timezone { get; set; }
         public string gmt { get; set; }
-        public object phone_number { get; set; }
+        public string phone_number { get; set; }
         public string country_name { get; set; }
         public string country_iso2 { get; set; }
         public string city_iata_code { get; set; }

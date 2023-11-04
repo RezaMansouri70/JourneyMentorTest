@@ -3,7 +3,9 @@ using Application.Models.Airport;
 using Application.Models.Flight;
 using Application.Models.General;
 using ClientSdk;
+using Domain.DomainClass;
 using Microsoft.Extensions.Configuration;
+using Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +21,12 @@ namespace Application.Services
 
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
-
-        public AirportsService(HttpClient httpClient, IConfiguration configuration)
+        private readonly IUnitOfWork _unitOfWork;
+        public AirportsService(HttpClient httpClient, IConfiguration configuration, IUnitOfWork unitOfWork)
         {
             _httpClient = httpClient;
             _configuration = configuration;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -52,6 +55,17 @@ namespace Application.Services
                 // We Can Log Err Here
             }
 
+            // Save In DB
+            var airportnameInResult = data.data.Select(x => x.airport_name).ToArray();
+            var NotExistedName = _unitOfWork.AirportRepository.Find(x => (!airportnameInResult.Contains(x.airport_name.Value))).Select(x=>x.airport_name.Value).ToArray();
+            //.Where(x=> !airportnameInResult.Contains(x.airport_name.Value)  )
+            if (NotExistedName.Any()) 
+            {
+                var dataMustSaveInDB = data.data.Where(x => NotExistedName.Contains(x.airport_name)).Select(a => new Airport(a.airport_name, a.iata_code, a.icao_code, a.latitude, a.longitude, a.geoname_id, a.timezone, a.gmt, a.phone_number, a.country_name, a.country_iso2, a.city_iata_code)).ToList();
+                await _unitOfWork.AirportRepository.AddRange(dataMustSaveInDB);
+                await _unitOfWork.Save();
+            }
+            
             return new Response<List<AirportModel>>()
             {
                 Data = data?.data,

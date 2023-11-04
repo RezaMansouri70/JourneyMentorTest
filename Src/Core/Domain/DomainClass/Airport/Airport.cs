@@ -31,18 +31,18 @@ namespace Domain.DomainClass
             this.city_iata_code = city_iata_code;
         }
         public int Id { get; set; }
-        public Name airport_name { get; }
-        public string iata_code { get; }
-        public string icao_code { get; }
-        public string latitude { get; }
-        public string longitude { get; }
-        public string geoname_id { get; }
-        public string timezone { get; }
-        public string gmt { get; }
-        public string phone_number { get; }
-        public string country_name { get; }
-        public string country_iso2 { get; }
-        public string city_iata_code { get; }
+        public Name airport_name { get; private set; }
+        public string iata_code { get; private set; }
+        public string icao_code { get; private set; }
+        public string latitude { get; private set; }
+        public string longitude { get; private set; }
+        public string geoname_id { get; private set; }
+        public string timezone { get; private set; }
+        public string gmt { get; private set; }
+        public string? phone_number { get; private set; }
+        public string? country_name { get; private set; }
+        public string? country_iso2 { get; private set; }
+        public string? city_iata_code { get; private set; }
 
     }
 

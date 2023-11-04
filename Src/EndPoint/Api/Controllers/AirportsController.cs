@@ -17,7 +17,7 @@ namespace Api.Controllers
         {
             this.airportsService = airportsService;
         }
-        [HttpGet("GetAirports")]
+        [HttpGet(Routes.GetAirports)]
         public async Task<Response<List<AirportModel>>> GetFlights([FromQuery]Filter filter)
         {
             return await airportsService.GetAirports(filter);

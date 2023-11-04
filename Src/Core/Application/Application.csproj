@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Client\ClientSdk\ClientSdk.csproj" />
+    <ProjectReference Include="..\..\Persistence\Persistence\Persistence.csproj" />
   </ItemGroup>
 
 </Project>

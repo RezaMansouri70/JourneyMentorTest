@@ -1,6 +1,9 @@
 using Application.Interfaces;
 using Application.Services;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 using Polly;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +13,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var connectionString = builder.Configuration.GetSection("ConnectionString:MySqlConnectionString").Value; 
+builder.Services.AddDbContext<ProjectContext>(options =>
+{
+    options.UseMySQL(connectionString);
+});
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IFlightsService, FlightsService>();
 builder.Services.AddScoped<IAirportsService, AirportsService>();
+
 builder.Services.AddHttpClient("Aviationstack", client =>
 {
     client.BaseAddress = new Uri("http://api.aviationstack.com/v1/");
@@ -24,6 +36,15 @@ builder.Services.AddHttpClient("Aviationstack", client =>
 }));
 
 var app = builder.Build();
+
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
+    await dbContext.Database.MigrateAsync();
+}
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
