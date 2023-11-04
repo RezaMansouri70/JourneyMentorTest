@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+
+  application.api:
+    container_name: application.api
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Docker
+    depends_on:
+        - application.db
+    ports:
+        - "5012:80"
+
+  application.db:
+    container_name: application.db
+    environment:
+       MYSQL_RANDOM_ROOT_PASSWORD: 1
+       MYSQL_DATABASE: JourneyMentorTest
+       MYSQL_USER: JourneyMentorUser
+       MYSQL_PASSWORD: JourneyMentorUser
+    restart: always
+    ports:
+        - "8080:3306"

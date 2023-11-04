@@ -1,0 +1,11 @@
+﻿version: '3.4'
+
+services:
+  application.db:
+    image: mysql/mysql-server
+
+  application.api:
+    image: ${DOCKER_REGISTRY-}api
+    build:
+      context: .
+      dockerfile: src/EndPoint/Api/Dockerfile

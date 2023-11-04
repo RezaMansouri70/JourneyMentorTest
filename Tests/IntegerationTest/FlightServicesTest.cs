@@ -39,13 +39,15 @@ namespace IntegerationTest.BookServices
         }
 
         [Fact]
-        public void should_get_flights_from_the_source()
+        public void should_get_flights_from_the_source_and_save_in_db()
         {
             // Act
             var result = _manager.GetFlights(new Application.Models.General.Filter() { PageIndex = 1, PageSize = 1 }).GetAwaiter().GetResult();
 
             // Assert
-            Assert.True(result.Success);
+            Assert.True(result.Success); //  Is Success Reading Data From Source
+            Assert.True(_unitOfWork.FlightRepository.GetAll().ToList().Count > 1); //  Is Data Saved In Mock Database
+
         }
 
 
