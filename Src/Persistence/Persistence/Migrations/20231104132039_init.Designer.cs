@@ -11,8 +11,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20231104104449_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20231104132039_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
