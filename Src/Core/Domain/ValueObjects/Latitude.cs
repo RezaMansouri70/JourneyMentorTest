@@ -20,15 +20,10 @@ namespace Domain.ValueObjects
         {
             value = value.Trim() ?? string.Empty;
 
-            if (string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value) || !(IsDouble(value)))
             {
                 throw new InvalidLatitudeException("Invalid Latitude");
-            }
-
-            if (!(IsDouble(value)))
-            {
-                throw new InvalidLatitudeException("Invalid Latitude");
-            }
+            }       
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
