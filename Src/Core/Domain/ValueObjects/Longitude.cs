@@ -24,10 +24,8 @@ namespace Domain.ValueObjects
             {
                 throw new InvalidLongitudeException("Invalid Longitude");
             }
-            double result;
-            Double.TryParse(value, out result);
 
-            if (!(result is double))
+            if (!(IsDouble(value)))
             {
                 throw new InvalidLongitudeException("Invalid Longitude");
             }
@@ -36,6 +34,13 @@ namespace Domain.ValueObjects
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Value;
+        }
+        public bool IsDouble(string ValueToTest)
+        {
+            double Test;
+            bool OutPut;
+            OutPut = double.TryParse(ValueToTest, out Test);
+            return OutPut;
         }
     }
 }
