@@ -53,11 +53,11 @@ builder.Services.AddFluentValidationAutoValidation();
 var app = builder.Build();
 
 
-//using (var serviceScope = app.Services.CreateScope())
-//{
-//    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
-//    await dbContext.Database.MigrateAsync();
-//}
+using (var serviceScope = app.Services.CreateScope())
+{
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
+    await dbContext.Database.MigrateAsync();
+}
 
 
 

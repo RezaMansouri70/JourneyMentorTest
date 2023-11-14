@@ -1,8 +1,7 @@
-﻿using Domain.DomainClass;
-
+﻿
 namespace Persistence.Repositories
 {
-    public interface IFlightRepository : IRepository<Flight>
+    public interface IFlightRepository : IRepository<Domain.DomainClass.Flight>
     {
     }
 }

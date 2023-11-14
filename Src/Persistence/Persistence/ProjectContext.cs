@@ -1,5 +1,7 @@
 ﻿using Domain.DomainClass;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Repositories.Airport.Configuration;
+using Persistence.Repositories.Flight.Configuration;
 
 namespace Persistence
 {
@@ -21,43 +23,9 @@ namespace Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-
-
-            modelBuilder.Entity<Airport>().OwnsOne(pi => pi.airport_name, builder =>
-            {
-                builder.Property(p => p.Value)
-                .HasColumnName("airport_name")
-                .HasColumnType("varchar(200)")
-                .HasMaxLength(200)
-                .IsRequired();
-            });
-
-            modelBuilder.Entity<Airport>().OwnsOne(pi => pi.latitude, builder =>
-            {
-                builder.Property(p => p.Value)
-                .HasColumnName("latitude")
-                .IsRequired();
-            });
-
-            modelBuilder.Entity<Airport>().OwnsOne(pi => pi.longitude, builder =>
-            {
-                builder.Property(p => p.Value)
-                .HasColumnName("longitude")
-                .IsRequired();
-            });
-
-
-
-
-            modelBuilder.Entity<Flight>().OwnsOne(pi => pi.airportname, builder =>
-            {
-                builder.Property(p => p.Value)
-                .HasColumnName("airportname")
-                .HasColumnType("varchar(200)")
-                .HasMaxLength(200)
-                .IsRequired();
-            });
-
+            modelBuilder.ApplyConfiguration(new AirportConfiguration());
+            modelBuilder.ApplyConfiguration(new FlightConfiguration());
+            // Or  modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
