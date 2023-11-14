@@ -1,5 +1,11 @@
+using Application.Features.Airport.Command;
+using Application.Features.Airport.Command.Validations;
+using Application.Features.Flight.Command;
+using Application.Features.Flight.Command.Validations;
 using Application.Interfaces;
 using Application.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -39,14 +45,19 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Appli
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Application.Features.Flight.Command.GetFlightsCommand).Assembly));
 
 
+
+builder.Services.AddScoped<IValidator<GetAirportsCommand>, GetAirportsCommandValidator>();
+builder.Services.AddScoped<IValidator<GetFlightsCommand>, GetFlightsCommandValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+
 var app = builder.Build();
 
 
-using (var serviceScope = app.Services.CreateScope())
-{
-    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
-    await dbContext.Database.MigrateAsync();
-}
+//using (var serviceScope = app.Services.CreateScope())
+//{
+//    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
+//    await dbContext.Database.MigrateAsync();
+//}
 
 
 
