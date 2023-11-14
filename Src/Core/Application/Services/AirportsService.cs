@@ -3,7 +3,9 @@ using Application.Models.Airport;
 using Application.Models.General;
 using ClientSdk;
 using Domain.DomainClass;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using Persistence;
 using System.Net.Http.Json;
 
@@ -23,9 +25,12 @@ namespace Application.Services
         }
 
 
-        public async Task<Response<List<AirportModel>>> GetAirports(Filter filter)
+        public async Task<Response<List<AirportModel>>> GetAirports(Filter filter , CancellationToken cancellationToken)
         {
-
+            if (cancellationToken.IsCancellationRequested)
+            {
+                throw new TaskCanceledException();
+            }
             var data = new ResponeFromAviationstack<AirportModel>();
             try
             {

@@ -22,7 +22,7 @@ namespace Application.Features.Flight.Command
 
         public async Task<Response<List<FlightModel>>> Handle(GetFlightsCommand request, CancellationToken cancellationToken)
         {
-            return await flightsService.GetFlights(request);
+            return await flightsService.GetFlights(request , cancellationToken);
         }
 
     }

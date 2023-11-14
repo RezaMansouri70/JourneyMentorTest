@@ -42,7 +42,7 @@ namespace IntegerationTest.BookServices
         public void should_get_flights_from_the_source_and_save_in_db()
         {
             // Act
-            var result = _manager.GetFlights(new Application.Models.General.Filter() { PageIndex = 1, PageSize = 1 }).GetAwaiter().GetResult();
+            var result = _manager.GetFlights(new Application.Models.General.Filter() { PageIndex = 1, PageSize = 1 } , new CancellationToken()).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(result.Success); //  Is Success Reading Data From Source

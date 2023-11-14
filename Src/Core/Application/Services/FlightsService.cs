@@ -22,9 +22,12 @@ namespace Application.Services
         }
 
 
-        public async Task<Response<List<FlightModel>>> GetFlights(Filter filter)
+        public async Task<Response<List<FlightModel>>> GetFlights(Filter filter , CancellationToken cancellationToken)
         {
-
+            if (cancellationToken.IsCancellationRequested)
+            {
+                throw new TaskCanceledException();
+            }
             var data = new ResponeFromAviationstack<FlightModel>();
             try
             {

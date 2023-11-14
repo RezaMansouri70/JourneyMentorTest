@@ -22,7 +22,7 @@ namespace Application.Features.Airport.Command
 
         public async Task<Response<List<AirportModel>>> Handle(GetAirportsCommand request, CancellationToken cancellationToken)
         {
-            return await airportsService.GetAirports(request);
+            return await airportsService.GetAirports(request , cancellationToken);
         }
 
     }

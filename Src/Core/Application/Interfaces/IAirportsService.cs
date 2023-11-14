@@ -6,7 +6,7 @@ namespace Application.Interfaces
 {
     public interface IAirportsService
     {
-        Task<Response<List<AirportModel>>> GetAirports(Filter filter);
+        Task<Response<List<AirportModel>>> GetAirports(Filter filter , CancellationToken cancellationToken);
 
     }
 }
