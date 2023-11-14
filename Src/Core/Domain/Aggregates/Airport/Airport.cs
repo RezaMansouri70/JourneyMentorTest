@@ -1,9 +1,10 @@
 ﻿using Domain.Interfaces;
+using Domain.Interfaces.Entity;
 using Domain.ValueObjects;
 
 namespace Domain.DomainClass
 {
-    public class Airport : IAggregateRoot
+    public class Airport : Entity, IAggregateRoot
     {
         protected Airport()
         {

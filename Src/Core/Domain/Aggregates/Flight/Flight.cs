@@ -1,9 +1,10 @@
 ﻿using Domain.Interfaces;
+using Domain.Interfaces.Entity;
 using Domain.ValueObjects;
 
 namespace Domain.DomainClass
 {
-    public class Flight : IAggregateRoot
+    public class Flight : Entity, IAggregateRoot
     {
         public Flight()
         {
