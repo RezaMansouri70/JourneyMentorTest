@@ -9,8 +9,6 @@ namespace Persistence.Repositories.Flight.Configuration
     {
         public void Configure(EntityTypeBuilder<Domain.DomainClass.Flight> builder)
         {
-            builder.HasKey(k => k.Id);
-
             builder.OwnsOne(pi => pi.airportname, builder =>
             {
                 builder.Property(p => p.Value)
