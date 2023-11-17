@@ -4,7 +4,7 @@ using Domain.ValueObjects;
 
 namespace Domain.DomainClass
 {
-    public class Flight : Entity, IAggregateRoot
+    public class Flight :  IAggregateRoot
     {
         public Flight()
         {
