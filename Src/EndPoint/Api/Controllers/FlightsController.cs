@@ -12,7 +12,7 @@ namespace Api.Controllers
 
         private readonly IMediator _mediator;
 
-        public FlightsController(IMediator mediator) => _mediator = mediator;
+        public FlightsController(IMediator mediator) => _mediator = mediator; 
 
         [HttpGet(Routes.GetFlights)]
         public async Task<IActionResult> GetFlights([FromQuery] GetFlightsCommand command, CancellationToken token)
